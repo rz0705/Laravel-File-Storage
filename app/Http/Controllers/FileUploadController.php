@@ -21,11 +21,14 @@ class FileUploadController extends Controller
         ]);
 
         $fileName = time().'.'.$request->file->extension();  
+        // dd($fileName);
    
         $request->file->move(public_path('storage/uploads'), $fileName);
    
-        return back()
-            ->with('success','You have successfully upload file.')
-            ->with('file',$fileName);
+        // return back()
+        //     ->with('success','You have successfully upload file.')
+        //     ->with('file',$fileName);
+
+        return redirect('/storage/uploads/'.$fileName);
     }
 }

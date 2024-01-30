@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileUploadController;
+use Faker\Provider\Image;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,8 @@ Route::get('/', function () {
 });
 Route::get('upload', [FileUploadController::class,'fileUpload'])->name('file.upload');
 Route::post('upload', [FileUploadController::class,'fileUploadPost'])->name('file.upload.post');
+
+Route::get('storage/{filename}', function ($filename)
+{
+    return Image::make(storage_path('public/' . $filename))->response();
+});
